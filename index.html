@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pagina</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+   
+    <header>
+        <h1>¡Dragon Ball!</h1>
+      </header>
+      <main>
+        <p>¡Hola, Mynor! ¿Listo para aumentar tu Ki?</p>
+        <img src="https://i.redd.it/who-would-win-if-goku-tried-to-get-into-politics-and-ran-v0-6ugmhoqqdqee1.jpg?width=1080&format=pjpg&auto=webp&s=c34240842452e51963eb66869ccf971a05ce7ba2" alt="Goku">
+        <button onclick="saludar()">Transformarse en Super Saiyan</button>
+        <button onclick="mostrarPersonajes()">Ver personajes</button>
+    
+        <section class="info" id="info-section">
+          <h2>Historia de Dragon Ball</h2>
+          <p>Dragon Ball es una serie de manga y anime creada por Akira Toriyama. Sigue la historia de Goku, un guerrero Saiyan que protege la Tierra contra poderosos enemigos mientras busca las legendarias Esferas del Dragón.</p>
+          
+          <h2>Personajes principales:</h2>
+          <ul>
+            <li>Goku</li>
+            <li>Vegeta</li>
+            <li>Gohan</li>
+            <li>Piccolo</li>
+            <li>Freezer</li>
+          </ul>
+    
+          <h2>Transformaciones icónicas:</h2>
+          <p>Super Saiyan, Super Saiyan Blue, Ultra Instinct, entre otras.</p>
+    
+          <h2>Galería de imágenes:</h2>
+          <img src="https://i.pinimg.com/736x/b8/40/4a/b8404a6161356cd9ce73fac622eb906c.jpg" alt="Vegeta">
+          <img src="https://i.pinimg.com/736x/a0/11/8d/a0118dec7dabd7b37127fed997e88621.jpg" alt="Freezer">
+        </section>
+    
+        <section id="personajes-section" style="display: none;">
+          <h2>Información adicional de personajes:</h2>
+          <p>Goku: El Saiyan más fuerte del universo.</p>
+          <p>Vegeta: Príncipe de los Saiyans.</p>
+          <p>Gohan: Hijo de Goku, con gran potencial.</p>
+          <p>Piccolo: Guerrero Namekuseí que entrena a Gohan.</p>
+          <p>Freezer: El villano más temido del universo.</p>
+        </section>
+      
+
+        <script src="index.js"></script>
+      </main>
+    
+      <button onclick="cargarPersonajes()">Cargar Personajes desde MySQL</button>
+
+<div id="datos"></div>
+
+<script>
+  async function cargarPersonajes() {
+    const respuesta = await fetch('http://localhost:3000/personajes');
+    const datos = await respuesta.json();
+
+    const contenedor = document.getElementById('datos');
+    contenedor.innerHTML = '';
+
+    datos.forEach(personaje => {
+      contenedor.innerHTML += `<p>${personaje.nombre} - ${personaje.poder}</p>`;
+    });
+  }
+</script>
+    
+</body>
+</html>
